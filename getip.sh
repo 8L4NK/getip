@@ -1,5 +1,5 @@
 #!/bin/bash
-# Get-IP v1.0
+# Get-IP v1.1
 # Coded by: thelinuxchoice
 # Github: https://github.com/thelinuxchoice/getip
 trap 'printf "\n";stop;exit 1' 2
