@@ -4,15 +4,24 @@
 # Github: https://github.com/thelinuxchoice/getip
 trap 'printf "\n";stop;exit 1' 2
 
+dependencies() {
+
+command -v php > /dev/null 2>&1 || { echo >&2 "I require php but it's not installed. Install it. Aborting."; exit 1; }
+command -v wget > /dev/null 2>&1 || { echo >&2 "I require wget but it's not installed. Install it. Aborting."; exit 1; }
+command -v unzip > /dev/null 2>&1 || { echo >&2 "I require unzip but it's not installed. Install it. Aborting."; exit 1; }
+command -v curl > /dev/null 2>&1 || { echo >&2 "I require curl but it's not installed. Install it. Aborting."; exit 1; }
+
+}
+
 stop() {
 
 checkngrok=$(ps aux | grep -o "ngrok" | head -n1)
 checkphp=$(ps aux | grep -o "php" | head -n1)
 if [[ $checkngrok == *'ngrok'* ]]; then
-killall -2 ngrok > /dev/null 2>&1
+pkill -f -2 ngrok > /dev/null 2>&1
 fi
 if [[ $checkphp == *'php'* ]]; then
-killall -2 php > /dev/null 2>&1
+pkill -f -2 php > /dev/null 2>&1
 fi
 
 
@@ -185,5 +194,6 @@ done
 
 }
 banner
+dependencies
 start
 
