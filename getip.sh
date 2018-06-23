@@ -26,7 +26,7 @@ printf "\e[1;77m  ____ _____ _| |_ _____ _ ____   \e[0m\n"
 printf "\e[1;77m / _  | ___ (_   _|_____) |  _ \  \e[0m\n"
 printf "\e[1;77m( (_| | ____| | |_      | | |_| | \e[0m\n"
 printf "\e[1;77m \___ |_____)  \__)     |_|  __/  \e[0m\n"
-printf "\e[1;77m(_____|                   |_|     v1.0\e[0m\n"
+printf "\e[1;77m(_____|                   |_|     v1.1\e[0m\n"
 printf "\n"
 
 }
@@ -127,12 +127,35 @@ echo ""
 else
 
 printf "\e[1;92m[\e[0m*\e[1;92m] Downloading Ngrok...\n"
+arch=$(uname -a | grep -o 'arm')
+
+if [[ $arch == *'arm'* ]]; then
+wget https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-arm.zip > /dev/null 2>&1
+
+if [[ -e ngrok-stable-linux-arm.zip ]]; then
+unzip ngrok-stable-linux-arm.zip > /dev/null 2>&1
+chmod +x ngrok
+rm -rf ngrok-stable-linux-arm.zip
+else
+printf "\e[1;93m[!] Download error... Termux, run:\e[0m\e[1;77m pkg install wget\e[0m\n"
+exit 1
+fi
+
+
+
+else
 wget https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-386.zip > /dev/null 2>&1 
 if [[ -e ngrok-stable-linux-386.zip ]]; then
 unzip ngrok-stable-linux-386.zip > /dev/null 2>&1
+chmod +x ngrok
 rm -rf ngrok-stable-linux-386.zip
+else
+printf "\e[1;93m[!] Download error... \e[0m\n"
+exit 1
 fi
 fi
+fi
+
 
 printf "\e[1;92m[\e[0m*\e[1;92m] Starting php server...\n"
 php -S 127.0.0.1:3333 > /dev/null 2>&1 & 
