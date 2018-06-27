@@ -136,7 +136,6 @@ echo ""
 else
 
 printf "\e[1;92m[\e[0m*\e[1;92m] Downloading Ngrok...\n"
-printf "\e[1;92m[\e[0m*\e[1;92m] Downloading Ngrok...\n"
 arch=$(uname -a | grep -o 'arm' | head -n1)
 arch2=$(uname -a | grep -o 'Android' | head -n1)
 if [[ $arch == *'arm'* ]] || [[ $arch2 == *'Android'* ]] ; then
