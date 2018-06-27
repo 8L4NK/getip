@@ -1,4 +1,4 @@
-# Get-ip v1.0
+# Get-ip v1.1 (ARM Support)
 ## Author: github.com/thelinuxchoice
 ## IG: instagram.com/thelinuxchoice
  
